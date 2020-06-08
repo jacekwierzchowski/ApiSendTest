@@ -15,7 +15,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.apiLogin()
+        for _ in 1...10 {
+            self.apiLogin()
+        }
     }
     
     func apiLogin() {
@@ -33,7 +35,7 @@ class ViewController: UIViewController {
             request.setValue("pl-pl", forHTTPHeaderField: "Accept-Language")
             request.setValue("utf-8", forHTTPHeaderField: "Accept-Charset")
             request.httpBody = try? encoder.encode(loginRequest)
-            print("----------------------------------------------")
+            print("---------------------------------------------------")
             print("POST to: \(request)")
             if let allHeaders = request.allHTTPHeaderFields {
                 for header in allHeaders {
@@ -43,12 +45,12 @@ class ViewController: UIViewController {
             if let httpBody = request.httpBody, let jsonBody = httpBody.prettyPrintedJSONString {
                 print(jsonBody)
             }
-            print("----------------------------------------------")
-            print("Reply from: \(request)")
             URLSession.shared.dataTask(with: request) { data, response, error in
                 if let data = data {
                     do {
                         let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
+                        print("---------------------------------------------------")
+                        print("Reply from: \(request)")
                         print(jsonResponse)
                         let json = jsonResponse as? [String: [String: Any]]
                         if let jsonReply = json?["reply"],
@@ -70,7 +72,7 @@ class ViewController: UIViewController {
         let external = External(name: "aaabbbccc", value: "eeefffggg")
         let requestForSendLogFirst = RequestForSendLog(level: "aaa", data: "bbbcccddd")
         let requestForSendLogSecond = RequestForSendLog(level: "eee", data: "fffggghhh")
-        let environment = Environment(bundleName: "bundleName", marketingVersion: "marketingVersion", bundleVersion: "bundleVersion", description: "Description")
+        let environment = Environment(bundleName: "bundleName", marketingVersion: "marketingVersion", bundleVersion: "bundleVersion", description: "EnvironmentName3")
         let counter = 1
         let sendLogRequest = SendLogRequest(device: device, externals: [external], request: [requestForSendLogFirst, requestForSendLogSecond], environment: environment, counter: counter)
         if let url = URL(string: "http://localhost:8080/api/send_log") {
@@ -94,12 +96,12 @@ class ViewController: UIViewController {
             if let httpBody = request.httpBody, let jsonBody = httpBody.prettyPrintedJSONString {
                 print(jsonBody)
             }
-            print("----------------------------------------------")
-            print("Reply from: \(request)")
             URLSession.shared.dataTask(with: request) { data, response, error in
                 if let data = data {
                     do {
                         let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
+                        print("----------------------------------------------")
+                        print("Reply from: \(request)")
                         print(jsonResponse)
                     } catch let parsingError {
                         print("Error", parsingError)
