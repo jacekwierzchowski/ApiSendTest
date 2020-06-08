@@ -7,14 +7,14 @@
 //
 
 struct SendLogRequest: Codable {
-    var device: Device
-    var externals: [External]
-    var request: [RequestForSendLog]
-    var environment: String
-    var counter: Int
+    let device: Device
+    let externals: [External]
+    let request: [RequestForSendLog]
+    let environment: Environment
+    let counter: Int
 }
 
 struct RequestForSendLog: Codable {
-    var level: String
-    var data: String
+    let level: String
+    let data: String
 }

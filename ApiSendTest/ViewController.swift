@@ -70,7 +70,7 @@ class ViewController: UIViewController {
         let external = External(name: "aaabbbccc", value: "eeefffggg")
         let requestForSendLogFirst = RequestForSendLog(level: "aaa", data: "bbbcccddd")
         let requestForSendLogSecond = RequestForSendLog(level: "eee", data: "fffggghhh")
-        let environment = "Test"
+        let environment = Environment(bundleName: "bundleName", marketingVersion: "marketingVersion", bundleVersion: "bundleVersion", description: "Description")
         let counter = 1
         let sendLogRequest = SendLogRequest(device: device, externals: [external], request: [requestForSendLogFirst, requestForSendLogSecond], environment: environment, counter: counter)
         if let url = URL(string: "http://localhost:8080/api/send_log") {

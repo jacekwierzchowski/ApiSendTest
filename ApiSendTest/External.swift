@@ -7,6 +7,6 @@
 //
 
 struct External: Codable {
-    var name: String
-    var value: String
+    let name: String
+    let value: String
 }

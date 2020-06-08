@@ -7,12 +7,12 @@
 //
 
 struct LoginRequest: Codable {
-    var device: Device
-    var externals: [External]
-    var request: RequestForLogin
+    let device: Device
+    let externals: [External]
+    let request: RequestForLogin
 }
 
 struct RequestForLogin: Codable {
-    var id: String
-    var password: String
+    let id: String
+    let password: String
 }

@@ -7,9 +7,9 @@
 //
 
 struct Device: Codable {
-    var id: String
-    var platform: String
-    var model: String
-    var system: String
-    var libraryVersion: String
+    let id: String
+    let platform: String
+    let model: String
+    let system: String
+    let libraryVersion: String
 }
