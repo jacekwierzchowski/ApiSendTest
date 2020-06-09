@@ -16,5 +16,7 @@ struct SendLogRequest: Codable {
 
 struct RequestForSendLog: Codable {
     let level: String
+    let module: String
+    let file: String
     let data: String
 }

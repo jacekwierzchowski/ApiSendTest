@@ -72,8 +72,8 @@ class ViewController: UIViewController {
         self.globalCounter += 1
         let device = Device(id: "0", platform: "iOS", model: "iPhone 11", system: "iOS 13", libraryVersion: "1")
         let external = External(name: "aaabbbccc", value: "eeefffggg")
-        let requestForSendLogFirst = RequestForSendLog(level: "aaa", data: "bbbcccddd xxx \(self.globalCounter)")
-        let requestForSendLogSecond = RequestForSendLog(level: "eee", data: "fffggghhh xxx \(self.globalCounter)")
+        let requestForSendLogFirst = RequestForSendLog(level: "aaa", module: "moduleiii", file: "filejjj", data: "bbbcccddd xxx \(self.globalCounter)")
+        let requestForSendLogSecond = RequestForSendLog(level: "eee", module: "modulekkk", file: "filelll", data: "fffggghhh xxx \(self.globalCounter)")
         let environment = Environment(bundleName: "bundleName", marketingVersion: "marketingVersion", bundleVersion: "bundleVersion", description: "EnvironmentName")
         let counter = 1
         let sendLogRequest = SendLogRequest(device: device, externals: [external], request: [requestForSendLogFirst, requestForSendLogSecond], environment: environment, counter: counter)
