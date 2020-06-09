@@ -10,12 +10,14 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var token: String?
+    var globalCounter = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for _ in 1...10 {
+        let loopConst = 30
+        
+        for _ in 1...loopConst {
             self.apiLogin()
         }
     }
@@ -56,8 +58,7 @@ class ViewController: UIViewController {
                         if let jsonReply = json?["reply"],
                             let jsonToken = jsonReply["token"],
                             let jsonTokenString = jsonToken as? String {
-                            self.token = jsonTokenString
-                            self.apiSendLog(token: self.token)
+                            self.apiSendLog(token: jsonTokenString)
                         }
                     } catch let parsingError {
                         print("Error", parsingError)
@@ -68,11 +69,12 @@ class ViewController: UIViewController {
     }
     
     func apiSendLog(token: String?) {
+        self.globalCounter += 1
         let device = Device(id: "0", platform: "iOS", model: "iPhone 11", system: "iOS 13", libraryVersion: "1")
         let external = External(name: "aaabbbccc", value: "eeefffggg")
-        let requestForSendLogFirst = RequestForSendLog(level: "aaa", data: "bbbcccddd")
-        let requestForSendLogSecond = RequestForSendLog(level: "eee", data: "fffggghhh")
-        let environment = Environment(bundleName: "bundleName", marketingVersion: "marketingVersion", bundleVersion: "bundleVersion", description: "EnvironmentName3")
+        let requestForSendLogFirst = RequestForSendLog(level: "aaa", data: "bbbcccddd xxx \(self.globalCounter)")
+        let requestForSendLogSecond = RequestForSendLog(level: "eee", data: "fffggghhh xxx \(self.globalCounter)")
+        let environment = Environment(bundleName: "bundleName", marketingVersion: "marketingVersion", bundleVersion: "bundleVersion", description: "EnvironmentName")
         let counter = 1
         let sendLogRequest = SendLogRequest(device: device, externals: [external], request: [requestForSendLogFirst, requestForSendLogSecond], environment: environment, counter: counter)
         if let url = URL(string: "http://localhost:8080/api/send_log") {
