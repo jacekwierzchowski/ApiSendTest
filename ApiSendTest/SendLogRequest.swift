@@ -10,7 +10,7 @@ struct SendLogRequest: Codable {
     let device: Device
     let externals: [External]
     let request: [RequestForSendLog]
-    let environment: Environment
+    let enviroment: Enviroment
     let counter: Int
 }
 

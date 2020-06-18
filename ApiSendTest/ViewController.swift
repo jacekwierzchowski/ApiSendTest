@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let loopConst = 30
+        let loopConst = 1
         
         for _ in 1...loopConst {
             self.apiLogin()
@@ -23,8 +23,8 @@ class ViewController: UIViewController {
     }
     
     func apiLogin() {
-        let device = Device(id: "0", platform: "iOS", model: "iPhone 11", system: "iOS 13", libraryVersion: "1")
-        let external = External(name: "aaabbbccc", value: "eeefffggg")
+        let device = Device(id: "5B6C6179-F6B5-4A81-989A-53535D3F0F1F", platform: "iOS", model: "iPhone X", system: "13.5.1", libraryVersion: "1.0")
+        let external = External(name: "bundle-id", value: "com.softax.mobile.PeoPay25.PublicTest")
         let request = RequestForLogin(id: "7q2enMKu-d9pH0Z1W-tKge-hFjW3Mnq-1cFW-sv0G8zYb-ydGp3v9m", password: "4dobGxXz78OY")
         let loginRequest = LoginRequest(device: device, externals: [external], request: request)
         if let url = URL(string: "http://localhost:8080/api/login") {
@@ -70,13 +70,14 @@ class ViewController: UIViewController {
     
     func apiSendLog(token: String?) {
         self.globalCounter += 1
-        let device = Device(id: "0", platform: "iOS", model: "iPhone 11", system: "iOS 13", libraryVersion: "1")
-        let external = External(name: "aaabbbccc", value: "eeefffggg")
-        let requestForSendLogFirst = RequestForSendLog(level: "aaa", module: "moduleiii", file: "filejjj", data: "bbbcccddd xxx \(self.globalCounter)")
-        let requestForSendLogSecond = RequestForSendLog(level: "eee", module: "modulekkk", file: "filelll", data: "fffggghhh xxx \(self.globalCounter)")
-        let environment = Environment(bundleName: "bundleName", marketingVersion: "marketingVersion", bundleVersion: "bundleVersion", description: "EnvironmentName")
-        let counter = 1
-        let sendLogRequest = SendLogRequest(device: device, externals: [external], request: [requestForSendLogFirst, requestForSendLogSecond], environment: environment, counter: counter)
+        let device = Device(id: "5B6C6179-F6B5-4A81-989A-53535D3F0F1F", platform: "iOS", model: "iPhone X", system: "13.5.1", libraryVersion: "1.0")
+        let external = External(name: "bundle-id", value: "com.softax.mobile.PeoPay25.PublicTest")
+        let requestForSendLogFirst = RequestForSendLog(level: "info", module: "GENERAL", file: "SessionModel.swift:126:tickTimer()", data: "VGltZXI6IDYwMCAxMA==")
+        let requestForSendLogSecond = RequestForSendLog(level: "info", module: "GENERAL", file: "SessionModel.swift:126:tickTimer()", data: "VGltZXI6IDYwMCAxNQ==")
+        let requestForSendLogThird = RequestForSendLog(level: "info", module: "GENERAL", file: "SessionModel.swift:126:tickTimer()", data: "VGltZXI6IDYwMCAyMA==")
+        let enviroment = Enviroment(bundleName: "com.softax.mobile.PeoPay25.PublicTest", marketingVersion: "5", bundleVersion: "UNKNOWN", description: "PUBLICTEST")
+        let counter = 12
+        let sendLogRequest = SendLogRequest(device: device, externals: [external], request: [requestForSendLogFirst, requestForSendLogSecond, requestForSendLogThird], enviroment: enviroment, counter: counter)
         if let url = URL(string: "http://localhost:8080/api/send_log") {
             let encoder = JSONEncoder()
             var request = URLRequest(url: url)
