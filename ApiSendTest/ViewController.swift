@@ -74,7 +74,7 @@ class ViewController: UIViewController {
         let external = External(name: "bundle-id", value: "com.softax.mobile.PeoPay25.PublicTest")
         let requestForSendLogFirst = RequestForSendLog(level: "info", module: "GENERAL", file: "SessionModel.swift:126:tickTimer()", data: "VGltZXI6IDYwMCAxMA==")
         let requestForSendLogSecond = RequestForSendLog(level: "info", module: "GENERAL", file: "SessionModel.swift:126:tickTimer()", data: "VGltZXI6IDYwMCAxNQ==")
-        let requestForSendLogThird = RequestForSendLog(level: "info", module: "GENERAL", file: "SessionModel.swift:126:tickTimer()", data: "VGltZXI6IDYwMCAyMA==")
+        let requestForSendLogThird = RequestForSendLog(level: "info", module: "GENERAL", file: "SessionModel.swift:126:tickTimer()", data: "VGltZXI6ICI2MDAiIDIw")
         let enviroment = Enviroment(bundleName: "com.softax.mobile.PeoPay25.PublicTest", marketingVersion: "5", bundleVersion: "UNKNOWN", description: "PUBLICTEST")
         let counter = 12
         let sendLogRequest = SendLogRequest(device: device, externals: [external], request: [requestForSendLogFirst, requestForSendLogSecond, requestForSendLogThird], enviroment: enviroment, counter: counter)
